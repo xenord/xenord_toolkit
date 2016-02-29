@@ -7,20 +7,53 @@
 ############################################################################
 MENU=xenord_toolkit
 
-  echo -en "\E[32;1m"
+  echo -e "                                                            "
   echo -e "============================================================"
   echo -e " Toolkit Linux by xenord                                    "
   echo -e "============================================================"
-  echo -e
-  echo -e "  0 - cmd per aggiornare lista pacchetti e repository e kernel e rimuove vecchie versioni di kernel"
+  echo -e "                                                            "
+  echo -e "  Info: francesco.benetello921@gmail.com                    "
+  echo -e "                                                            "
+  echo -e "                                                            "
+  echo -e "  MENU:                                                     "
+  echo -e "                                                            "
+  echo -e "  0 - Debian based scripts                                          "
+  echo -e "                                                            "
+  echo -e "  Next choices in working..                                 "
+  echo -e "                                                            "
+  echo -e "                                                            "
+  echo -e "                                                            "
+  echo -e " x - Exit                                                   "
+  echo -e "                                                            "
+  echo -n "Enter option: "
+  read opt
 
+  if ["$opt" == "0"]; then
+      echo -e " 0 - Debian Updates"
+      echo -e "                                                            "
+      echo -e "                                                            "
+      echo -e " x - Exit                                                   "
+      echo -e "                                                            "
+      echo -n "Enter option: "
+      read opt
+      if ["$opt" == "0"]; then
+          if [ $(whoami) != 'root' ]; then
+              echo -e "                      "
+              echo -e "Warning!              "
+              echo "Give 'Sudo su' and retry";
+              echo -e "                      "
+          else
+              echo "Downloading distro's and repository updates.."
+              echo -e "                                          "
+              apt-get update && apt-get upgrade && apt-get dist-upgrade && apt-get purge $(deborphan) && apt-get autoremove --purge && apt-get autoclean
 
-
-  if [ $(whoami) != 'root' ]; then
-      echo "Give 'Sudo su' and retry";
-  else
-      echo "Downloading distro's and repository updates.."
-      apt-get update && apt-get upgrade && apt-get dist-upgrade && apt-get purge $(deborphan) && apt-get autoremove --purge && apt-get autoclean
-
-  echo -en "\033[1m Finished \033[0m"
+              echo -en "\033[1m Finished \033[0m"
+          fi
+      if ["$opt" == "x"]; then
+          exit 0
+      else exit 0
+      fi
+  if ["$opt" == "x"]; then
+      exit 0
+  else exit 0
   fi
